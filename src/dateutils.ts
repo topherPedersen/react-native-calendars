@@ -113,7 +113,9 @@ export function month(date: XDate) { // exported for tests only
 }
 
 export function weekDayNames(firstDayOfWeek = 0) {
-  let weekDaysNames = getLocale().dayNamesShort;
+  let weekDaysNames = getLocale().dayNames.map((dayName: string) => {
+    return dayName.substring(0, 3).toUpperCase();
+  });
   const dayShift = firstDayOfWeek % 7;
   if (dayShift) {
     weekDaysNames = weekDaysNames.slice(dayShift).concat(weekDaysNames.slice(0, dayShift));
